@@ -7,8 +7,8 @@
             <th>order Id</th>
             <th>user Id</th>
             <th>Total</th>
-            <th>Service Price</th>
             <th>status</th>
+            <th>operations</th>
         </tr>
     </thead>
     <tbody>
@@ -19,10 +19,7 @@
                 <td>{{$order->total}}</td>
                 <td>{{$order->status}}</td>
                 <td>
-                    @if (Auth::user() && Auth::user()->role_id === 3)
-                        <a href="{{route('orders.update', $order->id )}}">edit</a>
-                    @endif
-                    @if (Auth::user() && Auth::user()->role_id === 3)
+                    @if (Auth::user() && Auth::user()->role_id === 1)
                         <a href="{{route('orders.delete', $order->id )}}">delete</a>
                     @endif
                     

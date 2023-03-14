@@ -17,7 +17,7 @@ Route::middleware(['is_admin'])->group(function(){
     Route::get('users/providers', [UserController::class, 'getServiceProviders'])->name('users.providers');
     Route::delete('users/{user}', [UserController::class, 'deleteUser'])->name(('users.delete'));
     Route::get('orders/all', [AdminOrderController::class, 'viewOrders'])->name('orders.all');
-    Route::delete('orders/{order}', [AdminOrderController::class, 'deleteOrder'])->name('orders.delete');
+    Route::get('orders/{order}', [AdminOrderController::class, 'deleteOrder'])->name('orders.delete');
     Route::post('activate/{user}', [ActivationController::class, 'acivateProvider'])->name('users.activate');
     Route::post('deactivate/{user}', [ActivationController::class, 'deacivateProvider'])->name('users.deactivate');
 });

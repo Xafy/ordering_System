@@ -31,7 +31,7 @@
 </table>
 @endsection
 
-@section('script')
+@section('scripts')
 <script>
     $(function() {
         $('#users').DataTable({
