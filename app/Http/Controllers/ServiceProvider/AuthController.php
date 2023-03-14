@@ -14,7 +14,6 @@ class AuthController extends Controller
 {
     public function register(Request $request){
         try {
-
             $validateUser = Validator::make($request->all(), 
             [
                 'name' => 'required',
@@ -33,7 +32,7 @@ class AuthController extends Controller
             ]);
             Auth::login($user);
 
-            return redirect()->to(route('users.login'))->with(["success" => "You registered succesfuly"]);
+            return redirect()->to(route('orders.index'))->with(["success" => "You registered succesfuly"]);
 
         } catch (Throwable $err) {
             return redirect()->to(route('users.register'))->with(["error" => $err->getMessage()]);
@@ -58,7 +57,7 @@ class AuthController extends Controller
                 'email' => $request->email,
             ]);
 
-            return redirect()->to(route('users.login'))->with(["success" => "Your informations are updated succesfuly"]);
+            return redirect()->to(route('orders.index'))->with(["success" => "Your informations are updated succesfuly"]);
 
         } catch (Throwable $err) {
             return redirect()->to(route('users.edit'))->with(["error" => $err->getMessage()]);
@@ -88,7 +87,7 @@ class AuthController extends Controller
 
             Auth::login($user);
 
-            return redirect()->to(route('services.index'))->with(["success" => "You logged in succesfuly"]);
+            return redirect()->to(route('orders.index'))->with(["success" => "You logged in succesfuly"]);
 
         } catch (Throwable $err){
             return redirect()->to(route('users.login'))->with(["errors" => $err->getMessage()]);

@@ -22,7 +22,7 @@ class is_admin
         if($request->expectsJson()){
             return response()->json("You are not an admin");
         } else {
-            return redirect()->to(route('users.login'));
+            return redirect()->to(route('admin.loginForm'));
         }
     }
 }

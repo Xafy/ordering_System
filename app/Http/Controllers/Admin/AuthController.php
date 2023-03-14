@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -12,6 +12,10 @@ use Throwable;
 
 class AuthController extends Controller
 {
+    public function adminLoginForm(){
+        return view('users.adminForm');
+    }
+
     public function login(Request $request){
         try {
             $validateUser = Validator::make($request->all(), 
@@ -20,38 +24,25 @@ class AuthController extends Controller
                 'password' => 'required'
             ]);
             if($validateUser->fails()){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'errors' => $validateUser->errors()
-                ], 401);
+                return redirect()->to(route('admin.loginForm'))->with(["errors" => $validateUser->getMessage()]);
             }
 
             if(!Auth::attempt($request->only(['email', 'password']))){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Email & Password does not match with our record.',
-                ], 401);
+                return redirect()->to(route('admin.loginForm'))->with(["errors" => 'Email & Password does not match with our record.']);
             }
 
             $user = User::where('email', $request->email)->first();
 
-            $token = $user->createToken('API Token')->plainTextToken;
+            if(! $user->role_id === 1){
+                return redirect()->to(route('admin.loginForm'))->with(["errors" => 'These credentials are not for an admin user']);
+            } 
 
-            return response()->json([
-                "status" => 1,
-                "message" => "تم تسجيل الدخول بنجاح",
-                "data" => [
-                        "token" => $token,
-                        "user" => $user
-                    ]
-                ], 200);
+            Auth::login($user);
+
+            return redirect()->to(route('orders.all'))->with(["success" => "You logged in succesfuly"]);
 
         } catch (Throwable $err){
-            return response()->json([
-                'status' => false,
-                'message' => $err->getMessage()
-            ], 500);
+            return redirect()->to(route('admin.loginForm'))->with(["errors" => $err->getMessage()]);
         }
     }
 

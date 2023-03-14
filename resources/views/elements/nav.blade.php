@@ -17,20 +17,11 @@
               <li><a href="{{route('services.index')}}" class="nav-link px-2 text-secondary">services</a></li>
               <li><a href="{{route('orders.index')}}" class="nav-link px-2 text-white">orders</a></li>
           @endif
-
-          {{-- @if (Auth::user()->role_id === 3)
-              <li><a href="{{route('books.index')}}" class="nav-link px-2 text-secondary">users</a></li>
-              <li><a href="{{route('notes.create')}}" class="nav-link px-2 text-white">services</a></li>
-              <li><a href="{{route('books.index')}}" class="nav-link px-2 text-white">orders</a></li>
-          @endif --}}
         </ul>
-
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-        </form>
 
         <div class="text-end">
           @guest
+          <a href="{{route('admin.login')}}" class="btn btn-outline-light me-2">Admin</a>
           <a href="{{route('users.login')}}" class="btn btn-outline-light me-2">Login</a>
           <a href="{{route('users.register')}}" class="btn btn-warning">Register</a>
           @endguest

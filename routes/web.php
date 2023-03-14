@@ -3,13 +3,14 @@
 use App\Http\Controllers\Admin\ActivationController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
-use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\AuthFormController;
 use App\Http\Controllers\ServiceProvider\AuthController;
 use App\Http\Controllers\ServiceProvider\OrderController;
 use App\Http\Controllers\ServiceProvider\ServiceController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('admin/login', [AdminAuthController::class, 'adminLoginForm'])->name('admin.loginForm');
+Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
 
 Route::middleware(['is_admin'])->group(function(){
     Route::get('users/all', [UserController::class, 'getUsers'])->name('users.all');
@@ -18,8 +19,8 @@ Route::middleware(['is_admin'])->group(function(){
     Route::delete('users/{user}', [UserController::class, 'deleteUser'])->name(('users.delete'));
     Route::get('orders/all', [AdminOrderController::class, 'viewOrders'])->name('orders.all');
     Route::get('orders/{order}', [AdminOrderController::class, 'deleteOrder'])->name('orders.delete');
-    Route::post('activate/{user}', [ActivationController::class, 'acivateProvider'])->name('users.activate');
-    Route::post('deactivate/{user}', [ActivationController::class, 'deacivateProvider'])->name('users.deactivate');
+    Route::get('activate/{user}', [ActivationController::class, 'acivateProvider'])->name('users.activate');
+    Route::get('deactivate/{user}', [ActivationController::class, 'deacivateProvider'])->name('users.deactivate');
 });
 
 Route::middleware(['is_service_provider'])->group(function(){
@@ -39,3 +40,6 @@ Route::redirect('/', 'users/register');
 Route::post('login', [AuthController::class, 'login'])->name('users.handleLogin');
 Route::post('register', [AuthController::class, 'register'])->name('users.handleRegister');
 Route::get('logout', [AuthController::class, 'logout'])->name('users.logout');
+
+
+
