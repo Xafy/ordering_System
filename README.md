@@ -8,7 +8,7 @@ view and delete orders, activate and deactivate service providers)
 
 ## api end points 
 - opened for all :
-    -api/login
+    - api/login
     - api/regiter
 - only for customers : 
     - api/update/{user_id}
