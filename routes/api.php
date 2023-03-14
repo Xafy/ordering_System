@@ -1,15 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\ActivationController;
-use App\Http\Controllers\Admin\OrderController as AdminOrderController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\OrderController;
-use App\Http\Controllers\ServiceProvider\AuthController as ServiceProviderAuthController;
-use App\Http\Controllers\ServiceProvider\OrderController as ServiceProviderOrderController;
-use App\Http\Controllers\ServiceProvider\ServiceController;
-use App\Models\Role;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
