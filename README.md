@@ -9,12 +9,25 @@ view and delete orders, activate and deactivate service providers)
 ## api end points 
 - opened for all :
     - api/login
+    
     - api/regiter
+    
 - only for customers : 
     - api/update/{user_id}
-    - api/orders   => "GET", "Authorization Bearer token must be added", "Accept : application/json
-    - api/orders   => "POST", "Authorization Bearer token must be added", "Accept : application/json, "body : services[]"
-    - api/orders/{order_id}   => "POST", "Authorization Bearer token must be added", "Accept : application/json, "body : services[], status"
+    
+    - api/orders   => "GET",
+                      "Authorization Bearer token must be added",
+                      "Accept : application/json
+    
+    - api/orders   => "POST",
+                      "Authorization Bearer token must be added",
+                      "Accept : application/json,
+                      "body : service_id[] = the services id you want to order"
+                      
+    - api/orders/{order_id}   => "POST",
+                                 "Authorization Bearer token must be added",
+                                 "Accept : application/json,
+                                 
 
 ## to run the app 
 
