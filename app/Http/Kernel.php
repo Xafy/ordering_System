@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'is_admin' => \App\Http\Middleware\is_admin::class,
         'is_customer' => \App\Http\Middleware\is_customer::class,
+        'is_guest' => \App\Http\Middleware\is_guest::class,
         'is_service_provider' => \App\Http\Middleware\is_service_provider::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

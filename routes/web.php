@@ -9,15 +9,18 @@ use App\Http\Controllers\ServiceProvider\OrderController;
 use App\Http\Controllers\ServiceProvider\ServiceController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('admin/login', [AdminAuthController::class, 'adminLoginForm'])->name('admin.loginForm');
-Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
+Route::group(["middleware" => "is_guest"], function(){
+    Route::get('admin/login', [AdminAuthController::class, 'adminLoginForm'])->name('admin.loginForm');
+    Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
+    Route::view('users/login', 'users.login')->name('users.login');
+    Route::view('users/register', 'users.register')->name('users.register');
+    Route::post('login', [AuthController::class, 'login'])->name('users.handleLogin');
+    Route::post('register', [AuthController::class, 'register'])->name('users.handleRegister');
+});
 
-Route::view('users/login', 'users.login')->name('users.login');
-Route::view('users/register', 'users.register')->name('users.register');
 Route::redirect('/', 'users/register');
-Route::post('login', [AuthController::class, 'login'])->name('users.handleLogin');
-Route::post('register', [AuthController::class, 'register'])->name('users.handleRegister');
 Route::get('logout', [AuthController::class, 'logout'])->name('users.logout');
+
 
 Route::middleware(['is_admin'])->group(function(){
     Route::get('users/all', [UserController::class, 'getUsers'])->name('users.all');
@@ -40,13 +43,6 @@ Route::middleware(['is_service_provider'])->group(function(){
     Route::patch('services/{service}', [ServiceController::class, 'updateService'])->name('services.updateHandler');
     Route::get('orders', [OrderController::class, 'getOrders'])->name('orders.index');
 });
-
-Route::view('users/login', 'users.login')->name('users.login');
-Route::view('users/register', 'users.register')->name('users.register');
-Route::redirect('/', 'users/register');
-Route::post('login', [AuthController::class, 'login'])->name('users.handleLogin');
-Route::post('register', [AuthController::class, 'register'])->name('users.handleRegister');
-Route::get('logout', [AuthController::class, 'logout'])->name('users.logout');
 
 
 
