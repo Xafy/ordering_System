@@ -27,20 +27,19 @@ class AuthController extends Controller
                 return redirect()->to(route('admin.loginForm'))->with(["errors" => $validateUser->getMessage()]);
             }
 
-            if(!Auth::attempt($request->only(['email', 'password']))){
-                return redirect()->to(route('admin.loginForm'))->with(["errors" => 'Email & Password does not match with our record.']);
+            $user = User::where('email', $request->email)->first();
+            if($user->role_id === 2 or $user->role_id === 2) {
+                return redirect()->to(route('admin.loginForm'))->with(["errors" => 'These credentials are not for an admin user']);
+                
             }
 
-            $user = User::where('email', $request->email)->first();
-
-            if(! $user->role_id === 1){
-                return redirect()->to(route('admin.loginForm'))->with(["errors" => 'These credentials are not for an admin user']);
-            } 
+            if(!Auth::attempt($request->only(['email', 'password']))){
+                return redirect()->to(route('admin.loginForm'))->with(["errors" => 'Email & Password does not match with our record.ssss']);
+            }
 
             Auth::login($user);
-
             return redirect()->to(route('orders.all'))->with(["success" => "You logged in succesfuly"]);
-
+            
         } catch (Throwable $err){
             return redirect()->to(route('admin.loginForm'))->with(["errors" => $err->getMessage()]);
         }

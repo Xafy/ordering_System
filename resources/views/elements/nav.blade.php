@@ -6,17 +6,20 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          @if (Auth::user() && Auth::user()->role_id === 1)
-              <li><a href="{{route('users.all')}}" class="nav-link px-2 text-secondary">users</a></li>
-              <li><a href="{{route('users.providers')}}" class="nav-link px-2 text-white">service providers</a></li>
-              <li><a href="{{route('orders.all')}}" class="nav-link px-2 text-white">all orders</a></li>
-          @endif
+          @auth
+            @if (Auth::user() && Auth::user()->role_id === 1)
+                <li><a href="{{route('users.all')}}" class="nav-link px-2 text-secondary">users</a></li>
+                <li><a href="{{route('users.providers')}}" class="nav-link px-2 text-white">service providers</a></li>
+                <li><a href="{{route('orders.all')}}" class="nav-link px-2 text-white">all orders</a></li>
+            @endif
+            
+            @if ( Auth::user() && Auth::user()->role_id === 2)
+                <li><a href="{{route('services.create')}}" class="nav-link px-2 text-secondary">Create Service</a></li>
+                <li><a href="{{route('services.index')}}" class="nav-link px-2 text-secondary">services</a></li>
+                <li><a href="{{route('orders.index')}}" class="nav-link px-2 text-white">orders</a></li>
+            @endif
+          @endauth
           
-          @if ( Auth::user() && Auth::user()->role_id === 2)
-              <li><a href="{{route('services.create')}}" class="nav-link px-2 text-secondary">Create Service</a></li>
-              <li><a href="{{route('services.index')}}" class="nav-link px-2 text-secondary">services</a></li>
-              <li><a href="{{route('orders.index')}}" class="nav-link px-2 text-white">orders</a></li>
-          @endif
         </ul>
 
         <div class="text-end">

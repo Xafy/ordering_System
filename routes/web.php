@@ -12,11 +12,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('admin/login', [AdminAuthController::class, 'adminLoginForm'])->name('admin.loginForm');
 Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
 
+Route::view('users/login', 'users.login')->name('users.login');
+Route::view('users/register', 'users.register')->name('users.register');
+Route::redirect('/', 'users/register');
+Route::post('login', [AuthController::class, 'login'])->name('users.handleLogin');
+Route::post('register', [AuthController::class, 'register'])->name('users.handleRegister');
+Route::get('logout', [AuthController::class, 'logout'])->name('users.logout');
+
 Route::middleware(['is_admin'])->group(function(){
     Route::get('users/all', [UserController::class, 'getUsers'])->name('users.all');
     Route::get('users/customers', [UserController::class, 'getCustomers'])->name('users.customers');
     Route::get('users/providers', [UserController::class, 'getServiceProviders'])->name('users.providers');
-    Route::delete('users/{user}', [UserController::class, 'deleteUser'])->name(('users.delete'));
+    Route::get('users/{user}', [UserController::class, 'deleteUser'])->name(('users.delete'));
     Route::get('orders/all', [AdminOrderController::class, 'viewOrders'])->name('orders.all');
     Route::get('orders/{order}', [AdminOrderController::class, 'deleteOrder'])->name('orders.delete');
     Route::get('activate/{user}', [ActivationController::class, 'acivateProvider'])->name('users.activate');
