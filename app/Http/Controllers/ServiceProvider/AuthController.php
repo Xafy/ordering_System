@@ -80,7 +80,6 @@ class AuthController extends Controller
             }
 
             $user = User::where('email', $request->email)->first();
-
             if($user->role_id === 3){
                 return redirect()->to(route('users.login'))->with(["errors" => 'These routes are not available for Cutomers you may use the api']);
             } 

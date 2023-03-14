@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('content')
-
 @include('elements.errors')
     <div>
         <form action="{{route('services.createHandler')}}" method="POST" enctype="multipart/form-data">
@@ -13,10 +12,6 @@
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">description</label>
                 <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{old('description')}}</textarea>
-            </div>
-            <div class="input-group mb-3">
-                <input type="file" class="form-control" name="img" id="inputGroupFile02">
-                <label class="input-group-text"  for="inputGroupFile02">Upload img</label>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">price</label>
