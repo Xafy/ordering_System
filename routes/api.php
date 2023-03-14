@@ -22,24 +22,3 @@ Route::middleware(['auth:sanctum', 'is_customer'])->group(function(){
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
-
-// Route::middleware(['auth:sanctum', 'is_service_provider'])->group(function(){
-//     Route::get('orders', [ServiceProviderOrderController::class, 'getOrders']);
-//     Route::patch('provider/{user}', [ServiceProviderAuthController::class, 'updateUser']);
-//     Route::post('provider/service', [ServiceController::class, 'createService']);
-//     Route::patch('provider/service/{service}', [ServiceController::class, 'updateService']);
-// });
-
-// Route::middleware(['auth:sanctum', 'is_admin'])->group(function(){
-//     Route::get('users/all', [UserController::class, 'getUsers']);
-//     Route::get('users/customers', [UserController::class, 'getCustomers']);
-//     Route::get('users/providers', [UserController::class, 'getServiceProviders']);
-//     Route::get('orders', [AdminOrderController::class, 'viewOrders']);
-//     Route::delete('users/{user}', [UserController::class, 'deleteUser']);
-//     Route::delete('orders/{order}', [AdminOrderController::class, 'deleteOrder']);
-//     Route::post('activate/{user}', [ActivationController::class, 'acivateProvider']);
-//     Route::post('deactivate/{user}', [ActivationController::class, 'deacivateProvider']);
-// });
-
-// Route::post('login', [AuthController::class, 'login']);
-// Route::post('register', [AuthController::class, 'register']);
