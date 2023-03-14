@@ -1,13 +1,14 @@
 @extends('layout')
 
 @section('content')
+
+@section('content')
 @if (session()->has('success'))
     @include('elements.success')
 @elseif (session()->has('error'))
 @include('elements.error')
 @endif
 
-@section('content')
 <table id="services" class="display">
     <thead>
         <tr>

@@ -34,7 +34,7 @@ Route::middleware(['is_admin'])->group(function(){
 });
 
 Route::middleware(['is_service_provider'])->group(function(){
-    Route::view('users/edit', 'users.edit')->name('users.edit');
+    Route::get('users/edit/{user}', [AuthController::class, 'editForm'])->name('users.edit');
     Route::patch('users/{user}', [AuthController::class, 'updateUser'])->name('users.handleUpdate');    
     Route::get('services', [ServiceController::class, 'viewServices'])->name('services.index');
     Route::view('services/create', 'services.create')->name('services.create');

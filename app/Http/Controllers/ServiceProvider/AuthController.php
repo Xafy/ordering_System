@@ -93,6 +93,10 @@ class AuthController extends Controller
         }
     }
 
+    public function editForm(User $user){
+        return view('users.edit', compact('user'));
+    }
+
     public function logout(){
         Auth::logout();
         return redirect()->to(route('users.login'))->with(["success" => "successfully loged out"]);

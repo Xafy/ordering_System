@@ -1,6 +1,14 @@
 @extends('layout')
 
 @section('content')
+
+@section('content')
+@if (session()->has('success'))
+    @include('elements.success')
+@elseif (session()->has('error'))
+@include('elements.error')
+@endif
+
 <table id="orders" class="display">
     <thead>
         <tr>
