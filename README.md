@@ -1,16 +1,16 @@
 # Ordering_system_task 
 
 ## roles
-- cutomers (role_id = 3) can only use the api routes 
-- service providers (role_id = 2) can only use the web routes and can (update their informations, show services , create and update services, show orders)
-- admins (role_id = 1) can only use the web routes and can ( view and delete users[all users, service providers] ,
+- cutomers (role = "is_customer") can only use the api routes 
+- service providers (role = "is_service_provider") can only use the web routes and can (update their informations, show services , create and update services, show orders)
+- admins (role = "is_admin") can only use the web routes and can ( view and delete users[all users, service providers] ,
 view and delete orders, activate and deactivate service providers) 
 
 ## api end points 
 - opened for all :
     - api/login
     
-    - api/regiter
+    - api/register
     
 - only for customers : 
     - api/update/{user_id}
@@ -35,4 +35,4 @@ view and delete orders, activate and deactivate service providers)
 - update the database keys in the the .env file to what suits you
 - in the cmd run "php artisan migrate --seed"
 - in the cmd run "php artisan serve"
-- assign an admin from the database "give the user role_id = 1"
+- assign an admin from the database " give the user role = 'is_admin' "
