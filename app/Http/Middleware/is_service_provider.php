@@ -15,7 +15,7 @@ class is_service_provider
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user() && $request->user()->role_id === 2){
+        if ($request->user()->role == "is_service_provider"){
             return $next($request);
         } 
         

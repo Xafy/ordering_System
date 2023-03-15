@@ -21,9 +21,15 @@ class is_guest
         } 
         
         if($request->expectsJson()){
-            return response()->json("You are not an admin");
+            return response()->json("You are not a guest");
         } else {
-            return redirect()->to(route('users.login'));
+            if (Auth::user()->role == "is_service_provider"){
+                return redirect()->to(route('orders.index'));
+            } elseif (Auth::user()->role == "is_admin") {
+                return redirect()->to(route('orders.all'));
+            } else {
+                return response("llllllllllllll");
+            }
         }
     }
 }

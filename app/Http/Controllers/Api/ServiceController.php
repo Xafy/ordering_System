@@ -10,7 +10,6 @@ class ServiceController extends Controller
 {
     public function viewOrders(){
         $services = Service::all();
-
         return response()->json($services);
     }
 }

@@ -16,16 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email', 100)->unique();
             $table->string('password', 255);
-            $table->foreignId('role_id')->nullable()->constrained();
+            $table->enum('role',['is_admin', 'is_service_provider', 'is_customer'])->default('is_customer');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
-            // $table->string('address')->nullable();
-            // $table->string('phone')->nullable();
-            // $table->string('job')->nullable();
-            // $table->string('img')->nullable();
-            // $table->rememberToken();
-            // $table->string('salary')->nullable();
-            
         });
     }
 

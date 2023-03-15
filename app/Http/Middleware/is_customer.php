@@ -15,14 +15,14 @@ class is_customer
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->role_id === 3){
+        if ($request->user()->role == "is_customer"){
             return $next($request);
         } 
         
         if($request->expectsJson()){
             return response()->json("You are not authorized");
         } else {
-            return "somthing went wrong";
+            return "something went wrong";
         }
     }
 }

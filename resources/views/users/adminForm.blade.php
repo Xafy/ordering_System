@@ -5,6 +5,13 @@ admin Login Form
 @endsection
 
 @section('content')
+
+@if (session()->has('success'))
+    @include('elements.success')
+@elseif (session()->has('errors'))
+@include('elements.errors')
+@endif
+
 <div class="row">
     <div class="col-6 offset-3">
         @include('elements.errors')

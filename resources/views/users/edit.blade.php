@@ -6,9 +6,14 @@ Update user Form
 
 @section('content')
 <div class="row">
+
+@if (session()->has('success'))
+@include('elements.success')
+@elseif (session()->has('errors'))
+@include('elements.errors')
+@endif
+
     <div class="col-6 offset-3">
-        @include('elements.errors')
-        @include('elements.success')
         <form action="{{route('users.handleUpdate', Auth::user()->id)}}" method="POST">
             @csrf
             @method('PATCH')

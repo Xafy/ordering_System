@@ -14,7 +14,7 @@ class UserController extends Controller
     }
 
     public function getServiceProviders(){
-        $users = User::where('role_id', 2)->get();
+        $users = User::where('role', "is_service_provider")->get();
         return view('users.index', compact('users'));
     }
     

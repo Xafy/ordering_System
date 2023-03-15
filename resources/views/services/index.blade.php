@@ -3,10 +3,11 @@
 @section('content')
 
 @section('content')
+
 @if (session()->has('success'))
     @include('elements.success')
-@elseif (session()->has('error'))
-@include('elements.error')
+@elseif (session()->has('errors'))
+@include('elements.errors')
 @endif
 
 <table id="services" class="display">
@@ -27,8 +28,10 @@
                 <td>{{$service->description}}</td>
                 <td>{{$service->price}}</td>
                 <td>
-                @if (Auth::user() && Auth::user()->role_id == 2)
+                @if (Auth::user() && Auth::user()->role == "is_service_provider")
                     <a href="{{route('services.update', $service->id )}}">edit</a>
+                @else 
+                    <p>only service providers can edit their services</p>
                 @endif
                 </td>
             </tr>

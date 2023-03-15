@@ -7,13 +7,13 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           @auth
-            @if (Auth::user() && Auth::user()->role_id === 1)
+            @if (Auth::user() && Auth::user()->role == "is_admin")
                 <li><a href="{{route('users.all')}}" class="nav-link px-2 text-white">users</a></li>
                 <li><a href="{{route('users.providers')}}" class="nav-link px-2 text-white">service providers</a></li>
                 <li><a href="{{route('orders.all')}}" class="nav-link px-2 text-white">all orders</a></li>
             @endif
             
-            @if ( Auth::user() && Auth::user()->role_id === 2)
+            @if ( Auth::user() && Auth::user()->role == "is_service_provider")
                 <li><a href="{{route('services.create')}}" class="nav-link px-2 text-white">Create Service</a></li>
                 <li><a href="{{route('services.index')}}" class="nav-link px-2 text-white">services</a></li>
                 <li><a href="{{route('orders.index')}}" class="nav-link px-2 text-white">orders</a></li>

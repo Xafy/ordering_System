@@ -2,6 +2,13 @@
 @section('content')
 
 @include('elements.errors')
+
+@if (session()->has('success'))
+    @include('elements.success')
+@elseif (session()->has('errors'))
+@include('elements.errors')
+@endif
+
     <div>
         <form action="{{route('services.updateHandler', $service->id)}}" method="POST" enctype="multipart/form-data">
             @csrf

@@ -1,13 +1,20 @@
 @extends('layout')
 
 @section('content')
+
+@if (session()->has('success'))
+    @include('elements.success')
+@elseif (session()->has('errors'))
+@include('elements.errors')
+@endif
+
 <table id="users" class="display">
     <thead>
         <tr>
             <th>User Id</th>
             <th>User name</th>
             <th>User email</th>
-            <th>User Role_id</th>
+            <th>User Role</th>
             <th>User is_active</th>
             <th>operations</th>
         </tr>
@@ -18,7 +25,7 @@
                 <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{$user->role_id}}</td>
+                <td>{{$user->role}}</td>
                 <td>{{$user->is_active}}</td>
                 <td>
                     <a href="{{route('users.delete', $user->id )}}">delete</a>

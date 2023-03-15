@@ -5,8 +5,8 @@
 @section('content')
 @if (session()->has('success'))
     @include('elements.success')
-@elseif (session()->has('error'))
-@include('elements.error')
+@elseif (session()->has('errors'))
+@include('elements.errors')
 @endif
 
 <table id="orders" class="display">

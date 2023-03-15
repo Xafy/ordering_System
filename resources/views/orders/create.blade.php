@@ -3,6 +3,13 @@
 @section('content')
 
 @include('elements.errors')
+
+@if (session()->has('success'))
+    @include('elements.success')
+@elseif (session()->has('errors'))
+@include('elements.errors')
+@endif
+
     <div>
         <form action="{{route('orders.createHandler')}}" method="POST">
             @csrf

@@ -1,23 +1,26 @@
 @extends('layout')
 
 @section('content')
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    @foreach ($books as $book)
-    <div class="col">
-        <div class="card shadow-sm">
-        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{$book->title}}</text></svg>
-        <div class="card-body">
-            <p class="card-text">{{$book->desc}}</p>
-            <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-                <a href="{{route('books.show', $book->id)}}" class="btn btn-sm btn-outline-secondary">View</a>
-                <a href="{{route('books.edit', $book->id)}}" class="btn btn-sm btn-outline-secondary">Edit</a>
+
+@include('elements.errors')
+    <div>
+        <form action="{{route('orders.createHandler')}}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">user_id</label>
+                <input type="text" name="name" value="{{old('name')}}" class="form-control" id="exampleFormControlInput1">
             </div>
-            <small class="text-muted">9 mins</small>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">services</label>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{old('description')}}</textarea>
             </div>
-        </div>
-        </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">total</label>
+                <input type="number" name="price" value="{{old('price')}}" class="form-control" id="exampleFormControlInput1">
+            </div>
+            <div>  
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">create order</button>
+        </form>
     </div>
-    @endforeach
-    {{ $books->links() }}
 @endsection

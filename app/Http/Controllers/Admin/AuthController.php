@@ -28,7 +28,7 @@ class AuthController extends Controller
             }
 
             $user = User::where('email', $request->email)->first();
-            if($user->role_id === 2 or $user->role_id === 2) {
+            if(! $user->role == "is_admin") {
                 return redirect()->to(route('admin.loginForm'))->with(["errors" => 'These credentials are not for an admin user']);
                 
             }

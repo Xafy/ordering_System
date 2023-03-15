@@ -10,13 +10,11 @@ class OrderController extends Controller
 {
     public function viewOrders(){
         $orders = Order::all();
-
         return view('orders.index', compact('orders'));
     }
 
     public function deleteOrder(Order $order){
         $order->delete();
-
         return redirect()->to(route('orders.all'))->with(["success" => "order deleted successfuly"]);
     }
 }

@@ -23,7 +23,7 @@ class ServiceController extends Controller
                 return redirect()->to(route('services.create'))->with(["errors" => $validateService->errors()]);
             }
         
-        $service = Service::create([
+        Service::create([
             "name" => $request->name,
             "description" => $request->description,
             "img" => "dddddddddddd",

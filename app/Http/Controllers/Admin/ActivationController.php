@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ActivationController extends Controller
 {
     public function acivateProvider(User $user){
-        if($user->role_id === 2 && ! $user->is_active){
+        if($user->role == "is_service_provider" && ! $user->is_active){
             $user->update(["is_active" => true]);
             return redirect()->to(route('users.providers'))->with(["success" => "user activated successfuly"]);
         }
@@ -17,7 +17,7 @@ class ActivationController extends Controller
     }
 
     public function deacivateProvider(User $user){
-        if($user->role_id === 2 && $user->is_active){
+        if($user->role == "is_service_provider" && $user->is_active){
             $user->update(["is_active" => false]);
             return redirect()->to(route('users.providers'))->with(["success" => "user deactivated successfuly"]);
         }

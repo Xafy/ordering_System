@@ -5,10 +5,16 @@ Login Form
 @endsection
 
 @section('content')
+
+@if (session()->has('success'))
+@include('elements.success')
+@elseif (session()->has('errors'))
+@include('elements.errors')
+@endif
+
+
 <div class="row">
-    <div class="col-6 offset-3">
-        @include('elements.errors')
-        @include('elements.success')
+    <div class="col-6 offset-3">-
         <form action="{{route('users.handleLogin')}}" method="POST" >
             @csrf
             <div class="mb-3">
